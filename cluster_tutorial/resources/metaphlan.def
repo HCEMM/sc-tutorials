@@ -1,0 +1,28 @@
+bootstrap: docker
+From: ubuntu:20.04
+
+%pre
+    apptainer cache clean --force
+%post
+    apt-get -y update
+    apt-get install -y curl wget nano bzip2 less
+    apt-get clean
+
+    mkdir -p /opt
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    bash Miniconda3-latest-Linux-x86_64.sh -f -b -p /opt/conda
+    . /opt/conda/etc/profile.d/conda.sh
+    conda update --yes -n base conda
+
+    conda create -n myenv
+    conda activate myenv
+    conda config --env --add channels defaults
+    conda config --env --add channels bioconda
+    conda config --env --add channels conda-forge
+    conda install --yes metaphlan==3.0.6
+    conda deactivate
+    conda clean --yes --all
+
+%environment
+    export LC_ALL=C
+    export PATH=/opt/conda/envs/myenv/bin:$PATH
