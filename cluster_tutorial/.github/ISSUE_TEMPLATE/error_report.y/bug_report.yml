@@ -1,0 +1,50 @@
+name: 🚨 Found a bug 🪲 in a Tutorial
+description: Report a problem with the documentation or tutorials (e.g., errors, outdated info, broken links)
+labels: bug, documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐞 Problem Summary
+
+        <!-- Provide a brief summary of the problem you're encountering in the documentation or tutorial. -->
+  - type: textarea
+    id: affected-pages
+    attributes:
+      label: Affected Page(s)
+      description: |
+        Include links to the specific page(s) that contain the issue.
+      placeholder: "Add links here"
+    validations:
+      required: true
+  - type: textarea
+    id: issue-details
+    attributes:
+      label: Details
+      description: |
+        Describe the issue in detail: What is incorrect, outdated, or unclear? Include examples or screenshots if possible.
+      placeholder: "Describe the issue"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce (if applicable)
+      description: |
+        If this is an issue with a tutorial, describe the steps to reproduce the problem.
+      placeholder: |
+        1. Step 1
+        2. Step 2
+        3. Step 3
+  - type: textarea
+    id: possible-solution
+    attributes:
+      label: Possible Solution (Optional)
+      description: |
+        If you have any suggestions for how the issue can be fixed, include them here.
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes (Optional)
+      description: |
+        Any extra notes, screenshots, or resources you'd like to include that help clarify the problem.

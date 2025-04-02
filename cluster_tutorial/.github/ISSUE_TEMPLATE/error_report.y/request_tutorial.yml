@@ -1,0 +1,37 @@
+name: "✨ Request a New Tutorial ✨"
+description: "📚 Use this template to request a new tutorial."
+title: "[Tutorial Request]: "
+labels: ["enhancement", "tutorial request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        🙏 Thank you for suggesting a new tutorial! Please provide the details below to help us understand your request. 🚀
+
+  - type: input
+    id: tutorial_title
+    attributes:
+      label: "📌 Tutorial Title"
+      description: "📝 Provide a concise title for the tutorial you are requesting."
+      placeholder: "e.g., How to Set Up a Kubernetes Cluster"
+
+  - type: textarea
+    id: tutorial_description
+    attributes:
+      label: "📖 Tutorial Description"
+      description: "🛠️ Describe the tutorial you are requesting. Include details about what it should cover and why it is important."
+      placeholder: "Provide a detailed description here."
+
+  - type: input
+    id: target_audience
+    attributes:
+      label: "🎯 Target Audience"
+      description: "👥 Who is this tutorial for? Specify the audience level (e.g., beginner, intermediate, advanced)."
+      placeholder: "e.g., Beginners in Kubernetes"
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: "📝 Additional Notes"
+      description: "💡 Add any other relevant information or context for the tutorial request."
+      placeholder: "Optional"

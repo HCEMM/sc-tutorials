@@ -1,0 +1,39 @@
+name: "✨ Section Request ✨"
+description: "📚 Request a new section to be added to a tutorial"
+title: "[Section Request]: 🌟 <Provide a brief title for the section>"
+labels: ["enhancement", "section request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        🎉 Thank you for suggesting a new section for one of our tutorials! Please provide the details below to help us understand your request. 🚀
+  - type: input
+    id: tutorial_name
+    attributes:
+      label: "📘 Tutorial Name"
+      description: "📝 Which tutorial should this section be added to?"
+      placeholder: "e.g., Cluster Setup Tutorial"
+    validations:
+      required: true
+  - type: input
+    id: section_title
+    attributes:
+      label: "🏷️ Section Title"
+      description: "📖 What should the title of the new section be?"
+      placeholder: "e.g., Configuring Node Settings"
+    validations:
+      required: true
+  - type: textarea
+    id: section_description
+    attributes:
+      label: "📝 Section Description"
+      description: "📋 Provide a detailed description of the content you would like to see in this section."
+      placeholder: "e.g., This section should cover how to configure node settings for optimal performance."
+    validations:
+      required: true
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "💡 Additional Context"
+      description: "🔗 Any additional information or resources that might help us create this section."
+      placeholder: "e.g., Links to relevant documentation or examples."
