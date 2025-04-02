@@ -1,4 +1,4 @@
-# Using the Scientific Computing cluster
+# Scientific Computing Cluster Tutorial
 
 The Scientific Computing cluster is the 17 servers' supercomputer currently hosted at the Incubator House of HCEMM, and is managed by the [Scientific Computing ACF](https://acf.hcemm.eu/acf/scientific-computing/).
 
@@ -9,7 +9,22 @@ The Scientific Computing cluster is the 17 servers' supercomputer currently host
 
 In February 2025, the SC cluster came online. This tutorial will guide you through the steps to access and use it.
 
-## Obtaining credentials and logging into the cluster
+<br>
+
+## Table of contents
+
+- [1. Obtaining credentials and logging into the cluster](#1-obtaining-credentials-and-logging-into-the-cluster)
+- [2. Slurm Workload Manager](#2-slurm-workload-manager)
+- [3. Provision of tools and environments](#3-provision-of-tools-and-environments)
+  - [3.1. Modules are the primary way that software is provisioned in the SC cluster](#31-modules-are-the-primary-way-that-software-is-provisioned-in-the-sc-cluster)
+  - [3.2. Conda and pip environments](#32-conda-and-pip-environments)
+  - [3.3. Apptainer provides containerized environments](#33-apptainer-provides-containerized-environments)
+    - [3.3.1. Building personalized containers with `def` files](#331-building-personalized-containers-with-def-files)
+- [4. Limits, quotas and partitions](#4-limits-quotas-and-partitions)
+
+<br>
+
+## 1. Obtaining credentials and logging into the cluster
 
 Several steps are required until access to the SC cluster is granted.
 
@@ -21,53 +36,94 @@ Several steps are required until access to the SC cluster is granted.
 
 4. Running `ssh username@cluster_ip` will prompt for a password, and with the right password, access is granted to the login node. From here, jobs can be submitted to the cluster.
 
-5. Users should create 2FA credentials, by running `google-authenticator -t -d -f -r 3 -R 30 -w 17` and reading the QR code with an Authenticator app.
+5. **(Still in testing phase, not yet available)** Users should create 2FA credentials, by running
+```bash
+google-authenticator -t -d -f -r 3 -R 30 -w 17
+``` 
+and reading the QR code with an Authenticator app.
 
+<br>
 
-## Slurm Workload Manager
+## 2. Slurm Workload Manager
 
 The bioinformatic jobs submitted to the SC cluster are managed by [Slurm](https://slurm.schedmd.com/documentation.html). To learn more about how you can format your jobs to be submitted to the cluster, refer to the [tutorial](slurm_tutorial) on Slurm.
 
-## Conda environments
+<br>
 
+## 3. Provision of tools and environments
 
+### 3.1. Modules are the primary way that software is provisioned in the SC cluster
 
-## Useful recipes for Apptainer
+Modules are software installed system-wide. This means once a module is installed, it is available to all the users of the system. However, users can't install modules (for now).
 
-[Apptainer](https://apptainer.org/), the successor to Singularity, is used to provide containerized environments on the SC cluster. This is an alternative way to run analysis on the cluster, and allows to run commands with privileges that are not available on the cluster itself as, for example, `dnf/deb/apt install`.
-
-To build an Apptainer container, you can follow these steps:
-
-1. Get a container from the `lolcow` image: `apptainer pull library://godlovedc/funny/lolcow`
-
-Notice the new `lolcow.sif` file in the current directory. This is the container itself.
-
-2. Run the container: `apptainer exec lolcow.sif cowsay moo`
-
-3. Get inside the container, and run things inside: `apptainer shell lolcow.sif; cowsay moo`. You can also experiment running `apt update` and other administrative commands. To exit the container, type `exit`.
-
-Useful recipes for building containers with Singularity/Apptainer recipes are provided by the [NIH](https://github.com/NIH-HPC/singularity-def-files) and the [CSCfi](https://github.com/CSCfi/singularity-recipes). Do note the NIH recipes are still for singularity, so all instances of `singularity` have to be replaced with `apptainer`. 
-
-As an example, the following commands build a container for `metaphlan`, using the `def` file provided in this repository:
-
+To see which modules are available in the SC cluster, you can run
 ```bash
-module load apptainer
-git clone https://github.com/HCEMM/scientific_computing_docs
-apptainer build metaphlan.sif scientific_computing_docs/tutorials/cluster_tutorial/resources/metaphlan.def
-apptainer exec metaphlan.sif metaphlan --version
+module spider                 # list all available modules
+module spider bowtie2         # search for modules named bowtie2
+module -r spider *spades.*    # search with regex
 ```
 
-NIH also provides [a good overlook](https://github.com/NIH-HPC/Singularity-Tutorial) of the Singularity/Apptainer functionality. Just be sure to replace `singularity` with `apptainer` in the commands.
+### 3.2. Conda and pip environments
 
-## Limits, quotas and partitions
+To load conda into the environment, and save its configuration for startup, run 
+```bash
+ml miniconda3       # load the conda module into the environment
+conda init          # write conda configuration into ~/.bashrc so it always loads at start
+source ~/.bashrc    # load conda for the current terminal session
+```
+After the first session these commands are run into, to get conda ready for use, only the module loading is required: 
+```bash
+ml miniconda3
+```
+
+<br>
+
+### 3.3. Apptainer provides containerized environments
+
+[Apptainer](https://apptainer.org/), the successor to Singularity, is used to provide containerized environments on the SC cluster. This is an alternative way to run analysis on the cluster, and allows to run commands with privileges that are not available on the cluster itself as, for example, `dnf/deb/apt install/update`.
+
+To get an Apptainer container, you can follow these steps:
+
+```bash
+ml apptainer                                      # load the apptainer module
+apptainer pull docker://biocontainers/bowtie2     # pull a container from DockerHub
+```
+
+This will download a `bowtie2.sif` file, which is the container itself. The following commands might be useful:
+
+```bash
+apptainer exec bowtie2.sif bowtie2 --version      # run the container with a specific command
+apptainer shell --fakeroot bowtie2.sif            # open an interactive shell session inside the container, as root
+exit                                              # exit the shell session
+```
+
+You can experiment running `apt update` and other administrative commands, if running as root.
+
+#### 3.3.1. Building personalized containers with `def` files
+
+`def` files are similar in function to `Dockerfile` files used in docker. These files provide, from a base image, a recipe for setting up the environment inside the container.
+
+Useful recipes for building containers with Singularity/Apptainer recipes are provided by the [CSCfi](https://github.com/CSCfi/singularity-recipes). As an example, the following commands build a container for `pytorch`, using the `def` file provided in this repository:
+
+```bash
+ml apptainer              # load the apptainer module
+git clone https://github.com/CSCfi/singularity-recipes      # clone the CSCfi repository
+apptainer build pytorch_1.13.0_rocky.sif singularity-recipes/pytorch/pytorch_1.13.0_rocky.def           # build a container from the DEF file
+apptainer exec pytorch_1.13.0_rocky.sif python -c "import torch"      # run the container and check if pytorch is available
+```
+
+
+<br>
+
+## 4. Limits, quotas and partitions
 
 By default, each user has 10 Gb on their `/home` folder and 1 Tb on their `/scratch` folder. These limits can be extended by contacting the Scientific Computing ACF.
 
-The following table shows the information concerning the compute nodes of the SC cluster, as well as the partitions available for job submission (`cpu`, `gpu` and `mem`):
+The following table shows the information concerning the compute nodes of the SC cluster, as well as the partitions available for job submission (`cpu`, `gpu` and `highmem`):
 
 ![Specs of compute nodes](resources/compute_nodes_specs.png)
 
-By default, jobs are submitted to the `cpu` partition. To submit a job to the `gpu` partition, use the `--partition=gpu` flag. To submit a job to the `mem` partition, use the `--partition=mem` flag.
+By default, jobs are submitted to the `cpu` partition. To submit a job to the `gpu` partition, use the `--partition=gpu` flag. To submit a job to the `highmem` partition, use the `--partition=highmem` flag.
 
-At present, these partitions are only limited by time, i.e., each job can run for a maximum of 30 days if using the `cpu` partition, and 10 days if using the `gpu` or `mem` partitions.
+At present, these partitions are only limited by time, i.e., each job can run for a maximum of 30 days if using the `cpu` partition, and 10 days if using the `gpu` or `highmem` partitions.
 
