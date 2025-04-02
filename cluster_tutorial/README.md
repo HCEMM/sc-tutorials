@@ -71,9 +71,11 @@ ml miniconda3       # load the conda module into the environment
 conda init          # write conda configuration into ~/.bashrc so it always loads at start
 source ~/.bashrc    # load conda for the current terminal session
 ```
-After the first session these commands are run into, to get conda ready for use, only the module loading is required: 
+After these commands, conda will be available for use. When in a new session, these commands will create a new environment:
 ```bash
-ml miniconda3
+ml miniconda3                         # load the conda module
+conda create -n my_env python=3.8     # create a new conda environment
+conda activate my_env                 # activate the environment
 ```
 
 <br>
