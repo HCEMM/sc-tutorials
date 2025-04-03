@@ -14,9 +14,15 @@ The **version control** system allows you to track changes in code and collabora
 
 1. **Log in to GitHub**: Go to [GitHub](https://github.com) and log in to your account.  
 2. **Create a New Repository**:  
-    - Click the green **New** button on the repositories page.  
-    - Fill in the repository name, description, and choose visibility (public/private).  
-    - Check the box to initialize the repository with a `README.md` file.  
+    - Repositories related to HCEMM can be created [here](https://github.com/organizations/HCEMM/repositories/new).
+    - Fill out the form:  
+      - **Repository name**: Choose a unique name for your repository.  
+      - **Description**: Provide a brief description of your project.  
+      - **Visibility**: Choose between public or private.  
+      - **Initialize with a README**: Check this box to create a `README.md` file.
+      - **Add a `.gitignore`**: Select a template based on your project type (e.g., Python, R).
+      - **Choose a license**: Select a license that suits your project (e.g., MIT, Apache 2.0). More information [here](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository).
+    - Click **Create repository**.
 3. **Clone the Repository Locally**:  
     - Copy the repository URL (HTTPS/SSH).  
     - Open a terminal in VS Code and run:  
@@ -68,11 +74,13 @@ The **version control** system allows you to track changes in code and collabora
     git push origin <branch-name>    # Push the branch to GitHub
     ```
 
----
+### 2.1. In an IDE
 
 This workflow can be easily run in most IDEs. The following video shows how to do it in VS Code. (in GIF format, from the local repo)
 
 ![GitHub Workflow in VS Code](./resources/version_control.gif)
+
+---
 
 ## 3. GitHub Actions: CI/CD  
 
