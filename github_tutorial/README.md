@@ -70,6 +70,10 @@ The **version control** system allows you to track changes in code and collabora
 
 ---
 
+This workflow can be easily run in most IDEs. The following video shows how to do it in VS Code. (in GIF format, from the local repo)
+
+![GitHub Workflow in VS Code](./resources/version_control.gif)
+
 ## 3. GitHub Actions: CI/CD  
 
 [GitHub Actions](https://github.com/features/actions) allows you to automate workflows like testing and deployment.
