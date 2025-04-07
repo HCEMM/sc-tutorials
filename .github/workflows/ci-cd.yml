@@ -24,8 +24,6 @@ jobs:
         run: pytest github_tutorial/tests/
 
   deploy:
-    environment:
-      name: github-pages
     runs-on: ubuntu-latest
     name: Deploy static site to GitHub Pages
     needs: test
@@ -34,6 +32,8 @@ jobs:
       contents: read
       pages: write
       id-token: write
+    environment:
+      name: github-pages
     steps:
       - uses: actions/checkout@v3
 
