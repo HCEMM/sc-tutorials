@@ -9,9 +9,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     name: Run Python Tests
-    defaults:
-      run:
-        working-directory: github_tutorial
     steps:
       - uses: actions/checkout@v3
 
@@ -24,7 +21,7 @@ jobs:
         run: pip install pytest
 
       - name: Run tests
-        run: pytest tests/
+        run: pytest github_tutorial/tests/
 
   deploy:
     runs-on: ubuntu-latest
@@ -35,16 +32,13 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    defaults:
-      run:
-        working-directory: github_tutorial
     steps:
       - uses: actions/checkout@v3
 
       - name: Upload static site to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site/
+          path: github_tutorial/site/
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
