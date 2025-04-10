@@ -46,7 +46,7 @@ and reading the QR code with an Authenticator app.
 
 ## 2. Slurm Workload Manager
 
-The bioinformatic jobs submitted to the SC cluster are managed by [Slurm](https://slurm.schedmd.com/documentation.html). To learn more about how you can format your jobs to be submitted to the cluster, refer to the [tutorial](slurm_tutorial) on Slurm.
+The bioinformatic jobs submitted to the SC cluster are managed by [Slurm](https://slurm.schedmd.com/documentation.html). To learn more about how you can format your jobs to be submitted to the cluster, refer to the [tutorial](../slurm_tutorial/) on Slurm.
 
 <br>
 
