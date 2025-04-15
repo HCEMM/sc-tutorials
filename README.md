@@ -7,3 +7,5 @@ Computational tips and best practices from the Scientific Computing ACF
 ### [Cluster tutorial](cluster_tutorial/README.md): how to use the Scientific Computing cluster.
 
 ### [GitHub tutorial](github_tutorial/README.md): how to use GitHub for version control, collaboration and CI/CD.
+
+### [Package manager tutorial](package_manager_tutorial/README.md): how to make your tool available through Bioconda.

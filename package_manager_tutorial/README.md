@@ -6,6 +6,23 @@
 
 Before starting this tutorial, you should have a working version of your package, i.e., a [GitHub release](http://docs.github.com/en/repositories/releasing-projects-on-github/about-releases). If you don't, go to `https://github.com/<your_usename>/<your_package_name>/releases` and create a new release. This will create a tarball with the source code of your package, which is what we will use to build the bioconda package.
 
+## Index
+
+1. [Install conda](#1-install-conda)
+2. [Setup your local project](#2-setup-your-local-project)
+   * [Create a branch](#21-create-a-branch)
+3. [Create a recipe](#3-create-a-recipe)
+    * [meta.yaml](#31-metayaml)
+        * [The build scripts](#the-build-scripts)
+        * [About tests](#about-tests)
+        * [About licensing](#about-licensing)
+    * [build.sh](#32-buildsh)
+4. [Add the files to your local copy of bioconda-recipes](#4-add-the-files-to-your-local-copy-of-bioconda-recipes)
+5. [Test your recipe locally](#5-test-your-recipe-locally)
+6. [Commit and push your changes](#6-commit-and-push-your-changes)
+7. [Create a pull request and delete the branch](#7-create-a-pull-request-and-delete-the-branch)
+8. [Keeping the package updated](#8-keeping-the-package-updated)
+
 ## 1. [Install conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
 I suggest using [miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install), since Anaconda brings a lot to the table which is not needed for this tutorial (nor for most users).
