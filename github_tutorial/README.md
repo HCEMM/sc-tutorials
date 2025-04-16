@@ -2,42 +2,17 @@
 
 Welcome! This tutorial was developed for employees developing data analyses and software in the context of Biotech, and intends to provide some tools for common bioinformatics tasks.
 
----
-
-## 1. Creating a Repository on GitHub  
-
-1. **Log in to GitHub**: Go to [GitHub](https://github.com) and log in to your account.  
-2. **Create a New Repository**:  
-    - Repositories related to HCEMM can be created [here](https://github.com/organizations/HCEMM/repositories/new).
-    - Fill out the form:  
-      - **Repository name**: Choose a unique name for your repository.  
-      - **Description**: Provide a brief description of your project.  
-      - **Visibility**: Choose between public or private.  
-      - **Initialize with a README**: Check this box to create a `README.md` file.
-      - **Add a `.gitignore`**: Select a template based on your project type (e.g., Python, R).
-      - **Choose a license**: Select a license that suits your project (e.g., MIT, Apache 2.0). More information [here](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository).
-    - Click **Create repository**.
-3. **Clone the Repository Locally**:  
-    - Copy the repository URL (HTTPS/SSH).  
-    - Open a terminal in VS Code and run:  
-      ```bash
-      git clone <repository-url>
-      cd <repository-name>
-      ```  
-
----
-
-## 2. `README` and `.gitignore` files
+## 1. `README` and `.gitignore` files
 
 ### README is the first thing people see when they visit your repository
 
-Therefore, the `README.md` file should provide a clear overview of your project, including its purpose, installation instructions, usage examples, and any other relevant information. This tutorial is a good example of a README file, and here follow some additional interesting pieces you can include in yours:
+Therefore, the `README.md` file should provide a clear overview of your project, including its purpose, installation instructions, usage examples, and any other relevant information. This tutorial is a good example of a README file, and already includes many functions that make READMEs great tools for communication.
 
-**Badges**: Add badges to show the status of your project (e.g., build status, coverage, version, release date). Here is a badge showing the status of the CI/CD workflow in this repository:
+One additional tool are **badges**. Add badges to show the status of your project (e.g., build status, coverage, version, release date). Here is a badge showing the status of the CI/CD workflow in this repository (workflow explained below):
 
 ![CI/CD workflow](https://github.com/HCEMM/sc_tutorials/actions/workflows/ci-cd.yml/badge.svg)
 
-Following are other examples, these related to releases and package versions:
+If it's "passing", it makes us happy. Following are other examples, related to releases and package versions:
 ```markdown
 # Version of latest release in GitHub
 ![GitHub Release](https://img.shields.io/github/release/username/repo.svg)
@@ -73,7 +48,7 @@ __pycache__/        # Python cache files
 
 ---
 
-## 3. The Version Control Workflow
+## 2. The Version Control Workflow
 
 The [**version control**](https://github.com/resources/articles/software-development/what-is-version-control) system allows you to track changes in code and collaborate with others. It is implemented in Git, a distributed version control system. GitHub is a web-based platform that hosts Git repositories and provides additional features like issue tracking, pull requests, and CI/CD.
 
@@ -117,7 +92,7 @@ The [**version control**](https://github.com/resources/articles/software-develop
 
 ---
 
-### 3.1. In an IDE
+### 2.1. In an IDE
 
 This workflow can be easily run in most IDEs. The following video shows how to do it in VS Code:
 
@@ -130,7 +105,7 @@ This workflow can be easily run in most IDEs. The following video shows how to d
 
 ---
 
-## 4. GitHub Actions: CI/CD and GitHub pages
+## 3. GitHub Actions: CI/CD and GitHub pages
 
 [GitHub Actions](https://github.com/features/actions) (GHA) allows you to automate workflows like testing and deployment.
 
@@ -189,7 +164,7 @@ Results from this workflow can be seen in the [`Actions`](https://github.com/HCE
 
 ---
 
-## 5. Licensing and Citation  
+## 4. Licensing and Citation  
 
 ### Adding a License allows your work to be used by others while protecting your rights.
 
@@ -214,40 +189,3 @@ Adding a `CITATION.cff` file to your repository allows you to provide a standard
 ![alt text](./share/citation.png)
 
 Once the `CITATION.cff` file is added, an option will show up to "Cite this repository".
-
----
-
-## 6. README File  
-
-### Examples of Great README Files  
-
-A well-crafted README file can make your project more accessible and engaging. Here are some examples of excellent README files from popular projects:
-
-1. **[TensorFlow](https://github.com/tensorflow/tensorflow)**  
-    TensorFlow's README provides a clear overview of the project, installation instructions, and links to tutorials and documentation. It also includes badges for build status and supported platforms.
-
-2. **[React](https://github.com/facebook/react)**  
-    React's README is concise and to the point, with a quick start guide, links to documentation, and a description of the project's purpose and features.
-
-3. **[Django](https://github.com/django/django)**  
-    Django's README includes a brief introduction, installation instructions, and links to the official documentation and community resources.
-
-4. **[VS Code](https://github.com/microsoft/vscode)**  
-    The VS Code README is visually appealing and includes a feature list, screenshots, and links to documentation and contribution guidelines.
-
-5. **[Homebrew](https://github.com/Homebrew/brew)**  
-    Homebrew's README is simple yet effective, with installation instructions, usage examples, and links to additional resources.
-
-6. **[FastAPI](https://github.com/tiangolo/fastapi)**  
-    FastAPI's README is a great example of combining visuals and text. It includes a quick start guide, features, and links to documentation, all presented in an engaging format.
-
-### Key Elements of a Great README  
-
-- **Project Title and Description**: Clearly state what your project does and its purpose.
-- **Installation Instructions**: Provide step-by-step instructions for setting up the project.
-- **Usage Examples**: Include code snippets or screenshots to demonstrate how to use the project.
-- **Contributing Guidelines**: Explain how others can contribute to your project.
-- **License Information**: Specify the license under which your project is distributed.
-- **Badges**: Add badges for build status, coverage, or other metrics to make your README more informative.
-
-For more inspiration, check out [Awesome README](https://github.com/matiassingers/awesome-readme), a curated list of excellent README examples.
