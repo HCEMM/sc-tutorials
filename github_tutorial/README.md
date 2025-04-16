@@ -2,12 +2,6 @@
 
 Welcome! This tutorial was developed for employees developing data analyses and software in the context of Biotech, and intends to provide some tools for common bioinformatics tasks.
 
-The **version control** system allows you to track changes in code and collaborate with others. It is implemented in Git, a distributed version control system. GitHub is a web-based platform that hosts Git repositories and provides additional features like issue tracking, pull requests, and CI/CD.
-
-**CI/CD** stands for Continuous Integration and Continuous Deployment. It is a software development practice that allows you to automate the process of testing and deploying code changes. This includes keep your software up to date in package repositories, such as PyPI, CRAN, Bioconductor, and DockerHub.
-
-**GitHub Actions** is a feature of GitHub that enables you to set up CI/CD pipelines directly in your repository, as well as other automated workflows. 
-
 ---
 
 ## 1. Creating a Repository on GitHub  
@@ -33,8 +27,55 @@ The **version control** system allows you to track changes in code and collabora
 
 ---
 
-## 2. The Version Control Workflow
+## 2. `README` and `.gitignore` files
 
+### README is the first thing people see when they visit your repository
+
+Therefore, the `README.md` file should provide a clear overview of your project, including its purpose, installation instructions, usage examples, and any other relevant information. This tutorial is a good example of a README file, and here follow some additional interesting pieces you can include in yours:
+
+**Badges**: Add badges to show the status of your project (e.g., build status, coverage, version, release date). Here is a badge showing the status of the CI/CD workflow in this repository:
+
+![CI/CD workflow](https://github.com/HCEMM/sc_tutorials/actions/workflows/ci-cd.yml/badge.svg)
+
+Following are other examples, these related to releases and package versions:
+```markdown
+# Version of latest release in GitHub
+![GitHub Release](https://img.shields.io/github/release/username/repo.svg)
+# Date of latest release in GitHub
+![Release Data](https://img.shields.io/github/release-date/username/repo.svg)
+# Version of latest release in Bioconda
+![Bioconda Release](https://anaconda.org/bioconda/repo/badges/version.svg)
+```
+
+---
+
+### The `.gitignore` file helps keeping your repository clean
+
+To achieve that, the `.gitignore` file must specify the files and directories that should be excluded from version control. These files won't be uploaded to GitHub.
+```sh
+# Python files that show up every time you run a Python script
+__pycache__/        # Python cache files
+*.pyc               # Python compiled files
+*.pyo               # Python optimized files   
+
+# Data that you might want to keep private
+*.csv
+*.tsv
+*.xlsx
+
+# Environments that are created after running your code shouldn't be included as well
+.env
+*.venv/
+
+# For the MacOS homies 🍎
+.DS_Store
+```
+
+---
+
+## 3. The Version Control Workflow
+
+The [**version control**](https://github.com/resources/articles/software-development/what-is-version-control) system allows you to track changes in code and collaborate with others. It is implemented in Git, a distributed version control system. GitHub is a web-based platform that hosts Git repositories and provides additional features like issue tracking, pull requests, and CI/CD.
 
 1. **Check repository status**:  
     ```bash
@@ -74,7 +115,9 @@ The **version control** system allows you to track changes in code and collabora
     git push origin <branch-name>    # Push the branch to GitHub
     ```
 
-### 2.1. In an IDE
+---
+
+### 3.1. In an IDE
 
 This workflow can be easily run in most IDEs. The following video shows how to do it in VS Code:
 
@@ -87,9 +130,11 @@ This workflow can be easily run in most IDEs. The following video shows how to d
 
 ---
 
-## 3. GitHub Actions: CI/CD and GitHub pages
+## 4. GitHub Actions: CI/CD and GitHub pages
 
 [GitHub Actions](https://github.com/features/actions) (GHA) allows you to automate workflows like testing and deployment.
+
+**CI/CD** stands for Continuous Integration and Continuous Deployment. It is a software development practice that allows you to automate the process of testing and deploying code changes. This includes keep your software up to date in package repositories, such as PyPI, CRAN, Bioconductor, and DockerHub. CI/CD can be implemented with GitHub Actions, as explained next.
 
 This repo includes a very basic [CI/CD pipeline](https://github.com/HCEMM/sc_tutorials/blob/main/.github/workflows/ci-cd.yml), which tests a simple Python function, and displays its output in a static site hosted with [GitHub pages](https://pages.github.com/) (GHP). 
 
@@ -127,84 +172,82 @@ jobs:
     permissions:                                # give specific permissions to GHA
       contents: read                            # read access to the repository
       pages: write                              # give write access to GHP - essential for deploying
-      id-token: write                           # allow generating an OIDC token for authentication with GHP
-    environment:
-      name: github-pages
+      id-token: write                           # allow generating an OIDC token for authentication with GHP - GHP demands
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3               # same as before - checkout the code
 
       - name: Upload static site to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: github_tutorial/site/
+          path: github_tutorial/site/           # point to the folder where the static site is
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
 ```
 
-Results from this workflow can be seen in the [`Actions`](https://github.com/HCEMM/sc_tutorials/actions) tab of this repository.
-
----
-
-## 4. The `.gitignore` File  
-
-The `.gitignore` file specifies files and directories to exclude from version control. Example for biotech projects:  
-```
-# Python
-__pycache__/
-*.pyc
-*.pyo
-
-# Data
-*.csv
-*.tsv
-*.xlsx
-
-# Environment
-.env
-*.venv/
-```  
+Results from this workflow can be seen in the [`Actions`](https://github.com/HCEMM/sc_tutorials/actions) tab of this repository, and on the [GitHub pages deployment](https://hcemm.github.io/sc_tutorials).
 
 ---
 
 ## 5. Licensing and Citation  
 
-1. **Add a License**:  
-    - Choose a license (e.g., MIT, Apache 2.0) based on your project needs.  
-    - Add a `LICENSE` file to your repository.  
+### Adding a License allows your work to be used by others while protecting your rights.
 
-2. **Enable Citation**:  
-    - Add a `CITATION.cff` file for proper citation. Example:  
-      ```yaml
-      cff-version: 1.2.0
-      message: "If you use this software, please cite it as below."
-      authors:
-         - family-names: Doe
-            given-names: John
-      title: "Biotech Analysis Toolkit"
-      version: 1.0.0
-      doi: 10.1234/example.doi
-      ```  
+In the absence of a license, code and software [cannot be used](https://choosealicense.com/no-permission/). So this should be avoided, less you want your work to be used by you alone.
+
+A License can be chosen at the time of creating a repository, or added later. [choosealicense.com](https://choosealicense.com/) is a great place to start informing yourself.
+
+* Typically, the [MIT license](https://choosealicense.com/licenses/mit/) is a good choice for most projects, as it allows others to use, modify, and distribute your code with minimal restrictions. This means your open-source work can be used in both open-source and proprietary projects.
+
+* If you want to force work built upon your own to also be open source, you can use a [GNU General Public License (GPL)](https://choosealicense.com/licenses/gpl-3.0/) or a [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/). These are permissive licenses that allow others to use your code but require them to include the same license in their own projects.
+
+Once you have a license, add the `LICENSE` file to your repository. This file should contain the full text of the license you chose, and GitHub will automatically detect and parse it.
+
+![GitHub License](./share/license.png)
+
+This repo uses a MIT license.
+
+### A reference connects your work to your publications
+
+Adding a `CITATION.cff` file to your repository allows you to provide a standardized way for others to cite your work. [Here](https://github.com/iquasere/UPIMAPI/blob/master/CITATION.cff) is a good example.
+
+![alt text](./share/citation.png)
+
+Once the `CITATION.cff` file is added, an option will show up to "Cite this repository".
 
 ---
 
 ## 6. README File  
 
-The `README.md` file is the first thing users see. Include:  
-- **Project Overview**: Brief description of the project.  
-- **Installation Instructions**: How to set up the environment.  
-- **Usage**: Examples of how to use the software.  
-- **Contributing**: Guidelines for contributing to the project.  
+### Examples of Great README Files  
 
----
+A well-crafted README file can make your project more accessible and engaging. Here are some examples of excellent README files from popular projects:
 
-## 7. Additional Tips for Biotech Developers  
+1. **[TensorFlow](https://github.com/tensorflow/tensorflow)**  
+    TensorFlow's README provides a clear overview of the project, installation instructions, and links to tutorials and documentation. It also includes badges for build status and supported platforms.
 
-- **Data Analysis Pipelines**: Use tools like Snakemake or Nextflow for reproducible workflows.  
-- **Documentation**: Use tools like Sphinx or Jupyter Book for detailed documentation.  
-- **Environment Management**: Use `conda` or `virtualenv` to manage dependencies.  
-- **Data Security**: Avoid pushing sensitive data to GitHub. Use `.gitignore` and `.env` files.  
+2. **[React](https://github.com/facebook/react)**  
+    React's README is concise and to the point, with a quick start guide, links to documentation, and a description of the project's purpose and features.
 
----
+3. **[Django](https://github.com/django/django)**  
+    Django's README includes a brief introduction, installation instructions, and links to the official documentation and community resources.
 
-Happy coding! 🚀  
+4. **[VS Code](https://github.com/microsoft/vscode)**  
+    The VS Code README is visually appealing and includes a feature list, screenshots, and links to documentation and contribution guidelines.
+
+5. **[Homebrew](https://github.com/Homebrew/brew)**  
+    Homebrew's README is simple yet effective, with installation instructions, usage examples, and links to additional resources.
+
+6. **[FastAPI](https://github.com/tiangolo/fastapi)**  
+    FastAPI's README is a great example of combining visuals and text. It includes a quick start guide, features, and links to documentation, all presented in an engaging format.
+
+### Key Elements of a Great README  
+
+- **Project Title and Description**: Clearly state what your project does and its purpose.
+- **Installation Instructions**: Provide step-by-step instructions for setting up the project.
+- **Usage Examples**: Include code snippets or screenshots to demonstrate how to use the project.
+- **Contributing Guidelines**: Explain how others can contribute to your project.
+- **License Information**: Specify the license under which your project is distributed.
+- **Badges**: Add badges for build status, coverage, or other metrics to make your README more informative.
+
+For more inspiration, check out [Awesome README](https://github.com/matiassingers/awesome-readme), a curated list of excellent README examples.
