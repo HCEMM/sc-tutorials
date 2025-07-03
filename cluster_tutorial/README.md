@@ -36,11 +36,11 @@ Several steps are required until access to the SC cluster is granted.
 
 4. Running `ssh username@cluster_ip` will prompt for a password, and with the right password, access is granted to the login node. From here, jobs can be submitted to the cluster.
 
-5. **(Still in testing phase, not yet available)** Users should create 2FA credentials, by running
+<!--5. **(Still in testing phase, not yet available)** Users should create 2FA credentials, by running
 ```bash
 google-authenticator -t -d -f -r 3 -R 30 -w 17
 ``` 
-and reading the QR code with an Authenticator app.
+and reading the QR code with an Authenticator app.)-->
 
 <br>
 
