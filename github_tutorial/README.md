@@ -105,6 +105,15 @@ This workflow can be easily run in most IDEs. The following video shows how to d
 
 ---
 
+### 2.2. Some useful tips
+
+1. **To remove a file from history:** (sometimes because it contained sensitive information, such as passwords or patient data)
+
+```bash
+apt install git-filter-repo
+git-filter-repo --sensitive-data-removal --invert-paths --path <file-to-remove>
+```
+
 ## 3. GitHub Actions: CI/CD and GitHub pages
 
 [GitHub Actions](https://github.com/features/actions) (GHA) allows you to automate workflows like testing and deployment.
