@@ -30,17 +30,17 @@ Several steps are required until access to the SC cluster is granted.
 
 1. Employees of HCEMM are required to fill out the [provided form](https://docs.google.com/forms/d/e/1FAIpQLSdYtCZQcaFNFLVI64hxWyigVz31GuoSrcqIz3n_kalXVCFxlA/viewform?usp=pp_url&entry.598441848=1&entry.760391226=256+Gb&entry.175258676=No&entry.1787069197=I+will+be+performing+the+following+computational+tasks:+%0A-+e.g.,+MS/MS,+microbiomes,+RNA-Seq%0A-+e.g.,+MD+modelling,+DL+model+creation+and+prediction%0A%0AI+want+to+solve+the+research+question:+%0A-+e.g.,+Identify+differentially+expressed+genes+in+cancer+samples%0A%0AI+need+the+following+specific+packages/software:+%0A-+e.g.,+Python+3.8,+TensorFlow,+R+with+DESeq2%0A%0AI+have+the+following+additional+requirements:+%0A-+e.g.,+Custom+Python+library,+specific+version+of+a+tool,+large+temporary+storage%0A%0A(please+remove+the+non-relevant+sections)&entry.1260858631=No&entry.1316491120=No) with information regarding the bioinformatic works that are intended to be run on the cluster.
 
-2. The ACF will take notice of the response, and will provide credentials for accessing a VPN service. This service can be accessed with the [OpenVPN](https://openvpn.net/) service. After installing the OpenVPN client, the following line should be added to the `hosts` file: `10.0.60.248 tvpn.hcemm.eu`. The VPN connection can then be established.
+2. The ACF will take notice of the response, and will create a user account for the cluster.
 
-3. Users will get an email with the credentials, which include username, password and cluster IP. The password should be changed.
+3. Users will get an email with the credentials. The password should be changed immediately after the first login.
 
-4. Running `ssh username@cluster_ip` will prompt for a password, and with the right password, access is granted to the login node. From here, jobs can be submitted to the cluster.
+4. Running `ssh username@puli.hcemm.eu` will prompt for a password, and with the right password, access is granted to the login node. From here, jobs can be submitted to the cluster.
 
-<!--5. **(Still in testing phase, not yet available)** Users should create 2FA credentials, by running
+5. After getting access to the cluster, users should create 2FA credentials, by running
 ```bash
-google-authenticator -t -d -f -r 3 -R 30 -w 17
+google-authenticator
 ``` 
-and reading the QR code with an Authenticator app.)-->
+and reading the QR code with an Authenticator app. For every login after this, the user will also be prompted for a 2FA code.
 
 <br>
 
