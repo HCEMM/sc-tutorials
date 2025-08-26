@@ -38,9 +38,11 @@ Several steps are required until access to the SC cluster is granted.
 
 5. After getting access to the cluster, users should create 2FA credentials, by running
 ```bash
-google-authenticator
+ga-setup
 ``` 
 and reading the QR code with an Authenticator app. For every login after this, the user will also be prompted for a 2FA code.
+
+If this QR code is not working, please try with the original command: `google-authenticator`
 
 <br>
 
