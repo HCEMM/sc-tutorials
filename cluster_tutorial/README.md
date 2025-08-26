@@ -2,10 +2,12 @@
 
 The Scientific Computing cluster is the 17 servers' supercomputer currently hosted at the Incubator House of HCEMM, and is managed by the [Scientific Computing ACF](https://acf.hcemm.eu/acf/scientific-computing/).
 
+the Scientific Computing cluster is also known as the PULI supercomputer.
+
 <p align="center">
-  <img src="./resources/physical_diagram.png" width="400" >
+  <img src="./resources/puli-logo.png" width="400" >
 </p>
-<p align="center">Physical diagram of the SC cluster.</p>
+<p align="center">Logo of the PULI supercomputer.</p>
 
 In February 2025, the SC cluster came online. This tutorial will guide you through the steps to access and use it.
 
