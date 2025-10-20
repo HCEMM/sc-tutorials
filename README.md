@@ -9,3 +9,5 @@ Computational tips and best practices from the Scientific Computing ACF
 ### [GitHub tutorial](github_tutorial/README.md): how to use GitHub for version control, collaboration and CI/CD.
 
 ### [Package manager tutorial](package_manager_tutorial/README.md): how to make your tool available through Bioconda.
+
+### [FCBI Computational Services Tutorial](fcbi_tutorial/README.md): how to use FCBI's NextCloud storage and the EMMA reservation system.
