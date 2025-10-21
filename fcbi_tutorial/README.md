@@ -12,7 +12,7 @@ The NextCloud Storage Platform is designed to provide secure storage and sharing
 
 ### Registering for FCBI's NextCloud space
 
-<!--Before registration in NextCloud, users must fill out and submit [the form]();-->
+Before registration in NextCloud, users must fill out and submit [the relevant form](https://docs.google.com/forms/d/e/1FAIpQLSdbbyeoCdzpnRXxoG6T6DDd2Lppr5ie9_HpDbHTuyRj6bMPEg/viewform?usp=pp_url&entry.753506727=2).
 
 NextCloud registration is done through the [NextCloud registration page](https://cloud.hcemm.eu/apps/registration/), following these steps:
 
