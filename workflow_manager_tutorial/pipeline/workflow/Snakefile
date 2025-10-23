@@ -1,0 +1,146 @@
+import os
+from pathlib import Path
+
+configfile: "config.yaml"
+SAMPLES = config["samples"]
+THREADS = config.get("threads", 4)
+
+rule all:
+        input:
+                "qc/multiqc_report.html",
+                expand("counts/{sample}.tsv", sample=SAMPLES),
+                "de/deseq2_results.tsv"
+
+# Generate a tiny reference and simple simulated reads
+rule make_reference:
+        output:
+                "reference/ref.fasta"
+        run:
+                ref = """>gene1
+ATGCGTACGTAGCTAGCTAGCTAGCTAGCTACGATCGATCG
+>gene2
+ATGCGTACGTAGCTAGGCGTAGCTAGATCGATGACGATGCA
+>gene3
+ATGCGTACGTTTCTAGCTAGCTAACGATCGATCGTAGCTAG
+"""
+                Path(output[0]).parent.mkdir(parents=True, exist_ok=True)
+                with open(output[0], "w") as fh:
+                        fh.write(ref)
+
+# Simulate tiny FASTQ samples (paired-end single-file per sample for simplicity)
+rule make_reads:
+        input:
+                "reference/ref.fasta"
+        output:
+                fastq="reads/{sample}.fastq"
+        params:
+                reads_per_sample=1000
+        script:
+                "scripts/make_reads.py"
+
+# Build index (checkpoint to demonstrate dynamic downstream resolution)
+checkpoint build_bowtie2_index:
+        input:
+                "reference/ref.fasta"
+        output:
+                directory("reference/bt2_index")
+        threads: 1
+        conda:
+                "envs/bowtie2.yaml"
+        shell:
+                """
+                mkdir -p {output}
+                bowtie2-build {input} {output}/index || true
+                """
+
+def get_index_dir(wildcards):
+        chk = checkpoints.build_bowtie2_index.get()
+        return str(chk.output[0])
+
+rule align:
+        input:
+                fastq="reads/{sample}.fastq",
+                idx=lambda wildcards: get_index_dir(wildcards) + "/index"
+        output:
+                bam=temp("alignments/{sample}.bam")
+        threads: 2
+        conda:
+                "envs/bowtie2.yaml"
+        shell:
+                """
+                mkdir -p alignments
+                bowtie2 -x {input.idx} -U {input.fastq} -p {threads} \
+                        | samtools view -bS - \
+                        | samtools sort -o {output}
+                samtools index {output}
+                """
+
+rule qc_fastqc:
+        input:
+                "reads/{sample}.fastq"
+        output:
+                html="qc/{sample}_fastqc.html"
+        conda:
+                "envs/fastqc.yaml"
+        shell:
+                """
+                mkdir -p qc
+                fastqc --nogroup -o qc {input} >/dev/null 2>&1 || true
+                # move the produced html into the expected path if necessary
+                """
+
+rule summarize_alignment:
+        input:
+                bam="alignments/{sample}.bam"
+        output:
+                "qc/{sample}_alignment_metrics.txt"
+        conda:
+                "envs/samtools.yaml"
+        script:
+                "scripts/summarize_metrics.py"
+
+rule multiqc:
+        input:
+                expand("qc/{sample}_fastqc.html", sample=SAMPLES),
+                expand("qc/{sample}_alignment_metrics.txt", sample=SAMPLES)
+        output:
+                "qc/multiqc_report.html"
+        conda:
+                "envs/multiqc.yaml"
+        shell:
+                """
+                multiqc -o qc qc || true
+                """
+
+rule counts:
+        input:
+                bam="alignments/{sample}.bam",
+                ref="reference/ref.fasta"
+        output:
+                "counts/{sample}.tsv"
+        conda:
+                "envs/subread.yaml"
+        shell:
+                """
+                mkdir -p counts
+                # create a simple GTF motivated by our small fasta: gene coordinates are fake but consistent
+                cat > reference/ref.gtf <<'GTF'
+gene1\tmanual\texon\t1\t40\t.\t+\t.\tgene_id "gene1";
+gene2\tmanual\texon\t41\t80\t.\t+\t.\tgene_id "gene2";
+gene3\tmanual\texon\t81\t120\t.\t+\t.\tgene_id "gene3";
+GTF
+                featureCounts -T {threads} -a reference/ref.gtf -o counts/tmp_counts.txt {input.bam} >/dev/null 2>&1
+                tail -n +3 counts/tmp_counts.txt | awk '{{print $1"\t"$7}}' > {output}
+                rm counts/tmp_counts.txt
+                """
+
+rule de_deseq2:
+        input:
+                counts=expand("counts/{sample}.tsv", sample=SAMPLES),
+                config="config.yaml"
+        output:
+                "de/deseq2_results.tsv"
+        conda:
+                "envs/r_deseq2.yaml"
+        script:
+                "scripts/de_deseq2.R"

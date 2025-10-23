@@ -1,0 +1,8 @@
+samples:
+    - sampleA
+    - sampleB
+conditions:
+    sampleA: control
+    sampleB: treated
+
+threads: 4

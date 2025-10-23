@@ -1,0 +1,6 @@
+channels: [conda-forge, bioconda, r]
+dependencies:
+    - r-base
+    - r-deseq2
+    - r-tidyverse
+    - r-yaml
