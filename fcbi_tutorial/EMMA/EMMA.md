@@ -1,4 +1,5 @@
-# 🔬 Welcome to the EMMA User Guide
+> [*Back to home*](../README.md)
+## 🔬 Welcome to the EMMA User Guide
 
 Welcome! This guide provides everything you need to know to navigate our **EMMA** microscope reservation system, book time slots, and manage your appointments.
 
