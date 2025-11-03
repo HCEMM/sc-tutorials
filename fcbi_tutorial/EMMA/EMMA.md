@@ -5,12 +5,12 @@ Welcome! This guide provides everything you need to know to navigate our **EMMA*
 
 ## Quick Navigation
 
-* [Getting Started: Account & Login](#getting-started-account--login)
-* [How to Book a Reservation](#how-to-book-a-reservation)
-* [Managing Your Appointments](#managing-your-appointments)
-* [Viewing Microscope Details](#viewing-microscope-details)
-* [Getting Help & Contact](#getting-help--contact)
-* [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
+* [Getting Started: Account & Login](#-getting-started-account--login)
+* [How to Book a Reservation](#-how-to-book-a-reservation)
+* [Managing Your Appointments](#-managing-your-appointments)
+* [Viewing Microscope Details](#-viewing-microscope-details)
+* [Getting Help & Contact](#-getting-help--contact)
+* [Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
 
 ---
 
