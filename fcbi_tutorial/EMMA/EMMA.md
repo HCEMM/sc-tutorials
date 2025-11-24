@@ -18,6 +18,8 @@ Welcome! This guide provides everything you need to know to navigate our **EMMA*
 
 Before you can make a reservation, you'll need an account.
 
+<img src="../resources/EMMA/EMMA_register.png" alt="Registration" width="500">
+
 ### 1. Creating Your Account
 
 1.  From the homepage, click the **"Register"** button.
@@ -25,9 +27,13 @@ Before you can make a reservation, you'll need an account.
 3.  Accept the [Terms and Conditions](https://emma.hcemm.eu/terms-and-conditions)
 4.  Click the **"Register"** button.
 
+<img src="../resources/EMMA/EMMA_registration_form.png" alt="Registration Form" width="500">
+
 ### 2. Email verification
 1. After registration, an activation link will be sent to the email address provided.
 2. Please click the link to verify the email address!
+
+<img src="../resources/EMMA/EMMA_activation.png" alt="Activation Email" width="500">
 
 ### 3. Admin approval of registration
 1. After email verification, **additional administrator approval of is necessary**
