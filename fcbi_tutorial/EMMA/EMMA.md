@@ -79,6 +79,9 @@ You can easily view all your upcoming reservations or cancel them if your plans 
 1.  Navigate to the **"Reservations"** page.
 2.  This page will provide a complete list of all your upcoming and past reservations, sorted by date.
 
+<img src="../resources/EMMA/EMMA_reservations_my.png" alt="My Microscpe reservations" width="500">
+<img src="../resources/EMMA/EMMA_reservations_all.png" alt="All Microscpe reservations" width="500">
+
 ### How to Delete a Reservation
 
 1.  Go to your **"My Reservations"** page.
@@ -88,7 +91,7 @@ You can easily view all your upcoming reservations or cancel them if your plans 
 
 > **Important:** Please be courteous to other users. Cancel your reservations as far in advance as possible to free up the time slot. `[Terms and Conditions 3.2. "Reservations must be canceled no later than 24 hours before the scheduled time if the user cannot attend."]`
 
-![My reservations](URL_or_path_to_your_image)
+<img src="../resources/EMMA/EMMA_reservations_delete.png" alt="Delete a Microscpe reservation" width="500">
 
 ---
 
@@ -104,7 +107,8 @@ You can browse all available microscopes and their specifications before booking
     * 📍 Its location (e.g., Building A, Room 404)
     * ⚙️ Key specifications (e.g., magnification, objectives, available techniques)
     * 📜 Special usage rules or requirements.
-![Microscope details view](URL_or_path_to_your_image)
+
+<img src="../resources/EMMA/EMMA_microscopes.png" alt="Microscpes" width="500">
 ---
 
 ## 🆘 Getting Help & Contact
@@ -116,14 +120,11 @@ If you have any questions, encounter a problem with the website, or experience a
 3.  Click **"Send Message"**.
 
 For urgent issues with a microscope, you can also contact the facility manager directly:
-* **Facility Manager:** `[Manager Name]`
-* **Email:** `[manager@example.com]`
-* **Phone:** `[+1 555-123-4567]`
-* **Office:** `[Building C, Room 102]`
-
+* **Facility Manager:** `[Dr. Ferhan Ayaydin]`
+* **Email:** `[scientific.computing@hcemm.eu]`
 ---
 
-## 🤔 Frequently Asked Questions (FAQ)
+## 🤔 Frequently Asked Questions (FAQ-WIP)
 
 **Q: I can't log in, and the "Forgot Password" link isn't working.**
 * A: Please contact the facility manager at `[manager@example.com]` to have your password manually reset.
