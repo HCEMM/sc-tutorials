@@ -51,8 +51,6 @@ Before you can make a reservation, you'll need an account.
 1.  To log out at any time, click your **profile icon** in the top-right corner of the navigation bar.
 2.  Select **"Logout"** from the dropdown menu.
 
-![Screenshot verification, registration](URL_or_path_to_your_image)
-
 ---
 
 ## 🗓️ How to Book a Reservation
@@ -68,7 +66,7 @@ Our system is built around a central booking calendar.
     * Click **"Confirm Appointment"**.
 6.  Your reservation is now complete! It will immediately appear in your personal appointments list.
 
-![Book a microscope](URL_or_path_to_your_image)
+<img src="../resources/EMMA/EMMA_appointment.gif" alt="Microscpe reservation" width="500">
 
 ---
 
