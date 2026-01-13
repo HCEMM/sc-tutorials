@@ -123,17 +123,3 @@ For urgent issues with a microscope, you can also contact the facility manager d
 * **Facility Manager:** `[Dr. Ferhan Ayaydin]`
 * **Email:** `[scientific.computing@hcemm.eu]`
 ---
-
-## 🤔 Frequently Asked Questions (FAQ-WIP)
-
-**Q: I can't log in, and the "Forgot Password" link isn't working.**
-* A: Please contact the facility manager at `[manager@example.com]` to have your password manually reset.
-
-**Q: Can I book multiple time slots in one day?**
-* A: `[Your answer here. e.g., "Yes, but to ensure fair access, please do not book more than 4 consecutive hours during peak times (9 AM - 5 PM)."]`
-
-**Q: The microscope I want is always booked. What can I do?**
-* A: `[Your answer here. e.g., "Please check the calendar frequently for cancellations. If your need is urgent, contact the facility manager to discuss alternative options."]`
-
-**Q: How do I get trained on a microscope I haven't used before?**
-* A: `[Your answer here. e.g., "You must be trained by staff before booking. Please use the 'Contact Us' page to request a training session."]`
