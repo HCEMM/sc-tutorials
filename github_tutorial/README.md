@@ -2,6 +2,12 @@
 
 Welcome! This tutorial was developed for employees developing data analyses and software in the context of Biotech, and intends to provide some tools for common bioinformatics tasks.
 
+## 0. Gain access to HCEMM's GitHub environment
+
+**Restricted to HCEMM employees and collaborators.**
+
+Send email to joao.sequeira@hcemm.eu with your credentials.
+
 ## 1. `README` and `.gitignore` files
 
 ### README is the first thing people see when they visit your repository
